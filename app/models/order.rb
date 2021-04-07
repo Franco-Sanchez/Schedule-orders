@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   enum status: { pending: 0, approved: 1, canceled: 2 }
 
-  validates :product, presence: true
+  validates :product_name, presence: true
 
   def self.store_found(product_name)
     stores = Store.all

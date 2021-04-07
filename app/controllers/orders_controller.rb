@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   def create_order(client)
     @order = Order.new(order_params)
     @order.client = client
-    @order.store = Order.store_found(params[:product])
+    @order.store = Order.store_found(params[:product_name])
     if @order.save
       redirect_to root_path
     else
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:price, :status, :product)
+    params.require(:order).permit(:price, :status, :product_name)
   end
 
   def client_parms

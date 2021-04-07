@@ -9,19 +9,19 @@ class UsersController < ApplicationController
 
   # POST /signup
   def create
-    store = Store.find(params[:store])
+    store = Store.find_by(name: params[:store_name])
     @user = User.new(user_params)
     @user.store = store
     if @user.save
-      redirect_to store
+      redirect_to store_path(name: store.name)
     else
-      redirect :new
+      render :new
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :store)
+    params.permit(:username, :email, :password, :store_name)
   end
 end

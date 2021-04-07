@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   belongs_to :store
 
-  validates :username, :email, :store, presence: true
+  validates :username, :email, :store_name, presence: true
   validates :username, :email, uniqueness: true
   validates :email, format: { with: /\A\w+@\w+\.\w{2,3}\z/ }
   validates :password, length: { minimum: 6 }

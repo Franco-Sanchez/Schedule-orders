@@ -1,4 +1,4 @@
-<h1>Price</h1>
+<h1>Order</h1>
 <%= form_with model: @order do |form| %>
   <div>
     <%= form.label :name %> <br/>
@@ -17,10 +17,8 @@
     <%= form.telephone_field :phone %>
   </div>
   <div>
-    <%= form.label :product %>
-    <%= form.collection_select :product, Product.all, :name, :name %>
+    <%= form.label :products %>
+    <%= form.collection_select :product_name, Product.all, :name, :name %>
   </div>
-  <div>
-    <%= form.submit 'Create order' %>
-  </div>
+  <%= form.submit 'Create order' %>
 <% end %>

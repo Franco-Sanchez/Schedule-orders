@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
       store = @user.store
-      redirect_to store
+      redirect_to store_path(name: store.name)
     else
       redirect_to login_path
     end
