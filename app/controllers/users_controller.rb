@@ -1,18 +1,16 @@
 class UsersController < ApplicationController
   # GET /signup
-  def new
-    @user = User.new
-  end
+  def new; end
 
   # GET /profile
   def show; end
 
   # POST /signup
   def create
-    store = Store.find_by(name: params[:store])
-    user = User.new(user_params)
-    user.store = store
-    if user.save
+    store = Store.find(params[:store])
+    @user = User.new(user_params)
+    @user.store = store
+    if @user.save
       # redirect_to profile_path
     else
       redirect :new

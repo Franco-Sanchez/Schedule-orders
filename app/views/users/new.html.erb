@@ -1,1 +1,22 @@
 <h1>Register</h1>
+<%= form_with url: '/signup' do |form| %>
+  <div>
+    <%= form.label :username %> <br/>
+    <%= form.text_field :username %>
+  </div>
+  <div>
+    <%= form.label :email %> <br/>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %> <br/>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :stores %>
+    <%= form.collection_select :store, Store.all, :id, :name %>
+  </div>
+  <div>
+    <%= form.submit 'Create account' %>
+  </div>
+<% end %>
