@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
+    # client = Client.new
     # order = Order.new
   end
 end
