@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # GET /orders/new
+  # GET /
   def new
     @client = Client.new
     @order = Order.new
@@ -7,7 +7,32 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    # client = Client.new
-    # order = Order.new
+    client = Client.new(client_parms)
+    if client.save
+      create_order(client)
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def create_order(client)
+    @order = Order.new(order_params)
+    @order.client = client
+    @order.store = Order.store_found(params[:product])
+    if @order.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  def order_params
+    params.require(:order).permit(:price, :status, :product)
+  end
+
+  def client_parms
+    params.require(:client).permit(:name, :email, :address, :phone)
   end
 end

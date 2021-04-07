@@ -1,1 +1,26 @@
 <h1>Price</h1>
+<%= form_with model: @order do |form| %>
+  <div>
+    <%= form.label :name %> <br/>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :email %> <br/>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :address %> <br/>
+    <%= form.text_field :address %>
+  </div>
+  <div>
+    <%= form.label :phone %> <br/>
+    <%= form.telephone_field :phone %>
+  </div>
+  <div>
+    <%= form.label :product %>
+    <%= form.collection_select :product, Product.all, :name, :name %>
+  </div>
+  <div>
+    <%= form.submit 'Create order' %>
+  </div>
+<% end %>
