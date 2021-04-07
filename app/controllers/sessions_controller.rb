@@ -10,13 +10,13 @@ class SessionsController < ApplicationController
       store = @user.store
       redirect_to store_path(name: store.name)
     else
-      redirect_to login_path
+      render :new
     end
   end
 
   # DELETE /logout
   def destroy
-    session[user_id] = nil
+    session[:user_id] = nil
     redirect_to login_path
   end
 end
