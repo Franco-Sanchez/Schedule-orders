@@ -18,7 +18,7 @@
   </div>
   <div>
     <%= form.label :products %>
-    <%= form.collection_select :product_name, Product.all, :name, :name %>
+    <%= form.collection_select :product_name, Product.all, :name, :name, include_blank: 'Select a product' %>
   </div>
   <%= form.submit 'Create order' %>
 <% end %>
