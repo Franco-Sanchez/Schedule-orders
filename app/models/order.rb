@@ -11,7 +11,7 @@ class Order < ApplicationRecord
     stores_filter = stores.filter do |store|
       store.products.filter { |product| product.name == product_name }.size.positive?
     end
-    stores_order_priority = stores_filter.sort_by { |store| -store.priority }
+    stores_order_priority = stores_filter.sort_by(&:priority)
     stores_order_priority.first
   end
 end

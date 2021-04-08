@@ -7,7 +7,8 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    client = Client.new(client_parms)
+    client = Client.new(name: params[:order][:name], email: params[:order][:email],
+                        address: params[:order][:address], phone: params[:order][:phone])
     if client.save
       create_order(client)
     else
@@ -18,9 +19,9 @@ class OrdersController < ApplicationController
   private
 
   def create_order(client)
-    @order = Order.new(order_params)
+    @order = Order.new(product_name: params[:order][:product_name])
     @order.client = client
-    @order.store = Order.store_found(params[:product_name])
+    @order.store = Order.store_found(params[:order][:product_name])
     if @order.save
       redirect_to root_path
     else
@@ -29,10 +30,10 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:price, :status, :product_name)
+    params.permit(:price, :status, :product_name)
   end
 
   def client_parms
-    params.require(:client).permit(:name, :email, :address, :phone)
+    params.permit(:name, :email, :address, :phone)
   end
 end

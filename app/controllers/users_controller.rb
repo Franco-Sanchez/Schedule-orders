@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.store = store
     if @user.save
+      session[:user_id] = @user.id
       redirect_to store_path(name: store.name)
     else
       render :new
