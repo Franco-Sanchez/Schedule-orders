@@ -18,7 +18,8 @@ class OrdersController < ApplicationController
 
   # PATCH /orders/:id
   def update
-    @order = Order.find_by(store_id: current_user.store.id)
+    # @order = Order.find_by(store_id: current_user.store.id)
+    @order = Order.find(params[:id])
     update_order
     @order.update(status: params[:order][:status])
     redirect_to store_path(name: current_user.store.name)
