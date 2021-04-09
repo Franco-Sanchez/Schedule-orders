@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :stores, param: :name, only: :show
 
-  resources :orders, only: %i[new create]
+  resources :orders, only: %i[new create update]
 
   root 'orders#new'
 end

@@ -16,6 +16,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  # PATCH /orders/:id
+  def update
+    @order = Order.find(params[:id])
+    update_order
+    @order.update(status: params[:order][:status])
+    redirect_to store_path(name: current_user.store.name)
+  end
+
   private
 
   def create_order(client)
@@ -29,11 +37,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def order_params
-    params.permit(:price, :status, :product_name)
+  def update_order
+    if params[:order][:status] == 'approved' && params[:order][:price]
+      @order.update(price: params[:order][:price])
+    elsif params[:order][:status] == 'discarded'
+      call_create
+    end
   end
 
-  def client_parms
-    params.permit(:name, :email, :address, :phone)
+  def call_create
+    @order_new = Order.create(price: @order.price, product_name: @order.product_name,
+                              client: @order.client,
+                              store: Order.store_found(@order.product_name, @order.store.id))
   end
 end

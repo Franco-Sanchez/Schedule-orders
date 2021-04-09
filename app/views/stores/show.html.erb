@@ -1,2 +1,31 @@
 <h1><%= @store.name %></h1>
-<%= link_to 'Logout', logout_path, method: 'delete' %>
+<h2>Orders</h2>
+<% @store.orders.each do |order| %>
+  <ul>
+    <% if order.status == 'approved' %>
+      <li>
+        <span><%= order.product_name %></span> | 
+        <b><%= order.status %></b> | 
+        <span>S/<%= order.price %></span>
+      </li>
+    <% elsif order.status == 'discarded' %>
+      <li>
+        <span><%= order.product_name %></span> | 
+        <b><%= order.status %></b>
+      </li>
+    <% end %>
+  </ul>
+  <% if order.status == 'pending' %>
+    <%= form_with model: order do |form| %>
+      <div>
+        <span><%= order.product_name %></span>
+        <%= form.select :status, ['pending', 'approved', 'discarded'] %>
+      </div>
+      <div>
+        <%= form.number_field :price, placeholder: 'Price', required: true %>
+      </div>
+      <%= form.submit %>
+      <% end %>
+  <% end %>
+<% end %>  
+<%= link_to 'Logout', logout_path, method: :delete %>
