@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   # PATCH /orders/:id
   def update
-    @order = Order.find(params[:id])
+    @order = Order.find_by(store_id: current_user.store.id)
     update_order
     @order.update(status: params[:order][:status])
     redirect_to store_path(name: current_user.store.name)
@@ -48,6 +48,6 @@ class OrdersController < ApplicationController
   def call_create
     @order_new = Order.create(price: @order.price, product_name: @order.product_name,
                               client: @order.client,
-                              store: Order.store_found(@order.product_name, @order.store.id))
+                              store: Order.store_found(@order.product_name, @order.store))
   end
 end

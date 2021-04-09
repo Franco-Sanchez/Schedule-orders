@@ -7,14 +7,22 @@ class Order < ApplicationRecord
   validates :product_name, presence: true
   validate :price_approved
 
-  def self.store_found(product_name, store_id = nil)
+  def self.store_found(product_name, store_object = nil)
     stores = Store.all
     stores_filter = stores.filter do |store|
       store.products.filter { |product| product.name == product_name }.size.positive?
     end
-    stores_filter.delete_if { |store| store.id == store_id } if store_id
-    stores_order_priority = stores_filter.sort_by(&:priority)
-    stores_order_priority.first
+    validate_store_object(stores_filter, store_object).first
+  end
+
+  def self.validate_store_object(stores_filter, store_object)
+    if store_object
+      stores_sort = stores_filter.sort_by(&:priority)
+      store_index = stores_sort.index(store_object)
+      stores_sort.filter { |store| stores_sort.index(store) > store_index }
+    else
+      stores_filter.sort_by(&:priority)
+    end
   end
 
   def price_approved

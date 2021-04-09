@@ -30,6 +30,7 @@ puts 'End adding products to the store'
 puts 'Start creating user by store'
 stores.each do |store|
   store_email = store.name.split(/-|\s|,/).first.downcase
+  puts store_email
   User.create(username: Faker::Lorem.unique.word, email: "#{store_email}@mail.com", 
               password: '123456', store_name: store.name, store: store)
 end
