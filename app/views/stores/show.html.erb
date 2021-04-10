@@ -1,8 +1,29 @@
 <h1><%= @store.name %></h1>
 <h2>Orders</h2>
 <% @store.orders.each do |order| %>
+  <% if order.status != 'discarded' && order.price.nil? %>
+    <%= form_with model: order do |form| %>
+      <div>
+        <span><%= order.product_name %></span>
+        <% if order.status == 'pending' %>
+          <%= form.select :status, ['pending', 'approved'] %>
+        <% elsif order.status == 'approved' %>
+          <%= form.select :status, ['approved'] %>
+        <% end %>
+      </div>
+      <% if order.status == 'approved' %>
+        <span>Enter a price:</span>
+        <div>
+          <%= form.number_field :price, required: true %>
+        </div>
+        <%= form.submit 'Send quote' %>
+      <% elsif order.status == 'pending' %>
+        <%= form.submit 'Approve order' %>
+      <% end %>
+    <% end %>
+  <% end %>
   <ul>
-    <% if order.status == 'approved' %>
+    <% if order.status == 'approved' && order.price %>
       <li>
         <span><%= order.product_name %></span> | 
         <b><%= order.status %></b> | 
@@ -15,17 +36,5 @@
       </li>
     <% end %>
   </ul>
-  <% if order.status == 'pending' %>
-    <%= form_with model: order do |form| %>
-      <div>
-        <span><%= order.product_name %></span>
-        <%= form.select :status, ['pending', 'approved', 'discarded'] %>
-      </div>
-      <div>
-        <%= form.number_field :price, placeholder: 'Price', required: true %>
-      </div>
-      <%= form.submit %>
-      <% end %>
-  <% end %>
 <% end %>  
 <%= link_to 'Logout', logout_path, method: :delete %>

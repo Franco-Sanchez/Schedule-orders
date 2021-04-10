@@ -18,10 +18,9 @@ class OrdersController < ApplicationController
 
   # PATCH /orders/:id
   def update
-    # @order = Order.find_by(store_id: current_user.store.id)
     @order = Order.find(params[:id])
-    update_order
     @order.update(status: params[:order][:status])
+    params[:order][:price] && @order.update(price: params[:order][:price])
     redirect_to store_path(name: current_user.store.name)
   end
 
@@ -36,19 +35,5 @@ class OrdersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def update_order
-    if params[:order][:status] == 'approved' && params[:order][:price]
-      @order.update(price: params[:order][:price])
-    elsif params[:order][:status] == 'discarded'
-      call_create
-    end
-  end
-
-  def call_create
-    @order_new = Order.create(price: @order.price, product_name: @order.product_name,
-                              client: @order.client,
-                              store: Order.store_found(@order.product_name, @order.store))
   end
 end
