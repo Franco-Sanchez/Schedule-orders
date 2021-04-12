@@ -12,7 +12,7 @@ class Order < ApplicationRecord
     return unless pending_orders.length.positive?
 
     pending_orders.each do |order|
-      next unless confirm_two_hours(order)
+      # next unless confirm_two_hours(order)
 
       order.update(status: 'discarded')
       create_order(order)
@@ -20,10 +20,12 @@ class Order < ApplicationRecord
   end
 
   def self.create_order(order)
-    return if store_found(order.product_name, order.store).is_a?(Array)
-
-    create(price: order.price, product_name: order.product_name, client: order.client,
-           store: store_found(order.product_name, order.store))
+    if store_found(order.product_name, order.store).is_a?(Array)
+      OrderMailer.with(client: order.client).order_discarded_email.deliver_now
+    else
+      create(price: order.price, product_name: order.product_name, client: order.client,
+             store: store_found(order.product_name, order.store))
+    end
   end
 
   def self.store_found(product_name, store_object = nil)
