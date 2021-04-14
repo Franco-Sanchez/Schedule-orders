@@ -22,7 +22,7 @@ When you clone the repository, you must run the following commands:
 
 If you want to view the project in the browser, you must run <b>rails s<b>. This looks like:
 
-<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="400">
+<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="800">
 
 ## Final message
 
