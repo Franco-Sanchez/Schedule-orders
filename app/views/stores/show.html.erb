@@ -1,5 +1,5 @@
-<h1><%= @store.name %></h1>
-<h2>Orders</h2>
+<h2><%= @store.name %></h2>
+<h3>Orders</h3>
 <% @store.orders.each do |order| %>
   <% if order.status != 'discarded' && order.price.nil? %>
     <%= form_with model: order do |form| %>

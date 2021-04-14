@@ -2,45 +2,28 @@
 
 # Ruby on Rails Junior Challenge
 
-## 👩‍💻 Proyect Overview and Info
+## 👩‍💻 About the project
 
-El objetivo es diseñar e implementar una aplicación con Ruby on Rails para el manejo de solicitudes de reparaciones en una cadena de tiendas.
-Recuerda que no tenemos un timeline, reclutamos on a rolling basis, pero estaremos moviendo a personas a la siguiente fase apenas se completen las pruebas
+This project was created with Ruby on Rails 6.1.3.1 and the local database is connected to PostgreSQL. Styles were added through SASS.
 
-## 🦶 Pasos
+## 🦶 Installation
 
-* Crea una aplicación Ruby on Rails, implementando los casos de uso
-* Versiona tus cambios
-* Crea un pull request
+When you clone the repository, you must run the following commands:
 
-## ❓ Casos de uso a implementar
+1) bundle install
 
-* Existe un formulario abierto que permite a un cliente, solicitar una cotización de reparación a un determinado producto (Ejemplo: Laptop, Smartphone, Consola, TV).
-* La solicitud debe llegar a la tienda que tenga más prioridad (1 es mayor prioridad) y que ofrezca el servicio de reparación al tipo de producto.
-* Cuando se aprueba la solicitud de cotización, el usuario de la tienda debe ingresar un precio estimado en el panel de admin.
-* Si la tienda asignada no aprueba la solicitud dentro de 2 horas, se asigna a la siguiente tienda con menor prioridad. 
-* Si la solicitud no se aprueba, se envía un correo al cliente informando que no es posible realizar el trabajo.
-* El usuario puede ver todas las cotización pendientes, aprobadas y descartadas.
+2) rails db:create
 
-## 🔑 Restricciones técnicas
+3) rails db:migrate
 
-Los requisitos obligatorios son usar Ruby on Rails como tecnología de desarrollo, seguir las convenciones de Rails, validar lo que estimes necesario y crear un archivo de seeds para levantar rapidamente el proyecto
-Eres libre de usar cualquier gem.
+4) rails db:seed
 
-## 🎯 Bonificaciones
+## 🎯 Adittional
 
-Se consideran bonificaciones los siguientes puntos:
+If you want to view the project in the browser, you must run <b>rails s<b>. This looks like:
 
-* Gitflow y commits con significado
-* Código ordenado y legible
-* README actualizado
+<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="400">
 
-## 📃 Disclaimer
+## Final message
 
-Esto es un desafío técnico sin proposito comercial y D-Una de ninguna manera:
-
-* Compartirá o usará tu código
-* Obligarte a realizar este desafío
-* Compensarte de cualquier forma por realizar este desafío
-
-# Buena suerte 🚀
+Thanks for your time and for the oportunitty you gave me to improve my skills. I appreciate.

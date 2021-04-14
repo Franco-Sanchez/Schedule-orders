@@ -12,7 +12,7 @@ class Order < ApplicationRecord
     return unless pending_orders.length.positive?
 
     pending_orders.each do |order|
-      # next unless confirm_two_hours(order)
+      next unless confirm_two_hours(order)
 
       order.update(status: 'discarded')
       create_order(order)
