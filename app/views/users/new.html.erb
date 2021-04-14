@@ -1,5 +1,12 @@
 <section class="container">
   <%= form_with url: '/signup', class: 'form' do |form| %>
+    <ul>
+      <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li class="error"><%= msg %></li>
+        <% end %> 
+      <% end %>
+    </ul>
     <div class="form__input-box">
       <%= form.label :username, class: 'form__label' %>
       <%= form.text_field :username, class:"form__input" %>
@@ -17,6 +24,6 @@
       <%= form.collection_select :store_name, Store.all, :name, :name, { include_blank: 'Select a store' } , { class: 'form__select' } %>
     </div>
     <%= form.submit 'Create!', class: 'form__button' %>
-    <%= link_to 'Login', login_path, class: 'form__link' %>
+    <%= link_to 'or login with existing user', login_path, class: 'form__link' %>
   <% end %>
 </section>

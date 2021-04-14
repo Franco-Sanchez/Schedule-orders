@@ -5,6 +5,6 @@ class User < ApplicationRecord
 
   validates :username, :email, :store_name, presence: true
   validates :username, :email, uniqueness: true
-  validates :email, format: { with: /\A\w+.+@\w+\.\w{2,3}\z/ }
+  validates :email, format: { with: /\A\w+.*@\w+\.\w{2,3}\z/ }
   validates :password, length: { minimum: 6 }
 end

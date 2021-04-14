@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :stores, param: :name, only: :show
 
-  resources :orders, only: %i[new create update]
+  resources :orders, only: %i[update]
+
+  post '/', to: 'orders#create'
 
   root 'orders#new'
 end

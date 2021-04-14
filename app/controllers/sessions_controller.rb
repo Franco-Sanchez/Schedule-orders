@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to store_path(name: current_user.store.name)
     else
-      render :new
+      redirect_to login_path, alert: 'User not recognized'
     end
   end
 

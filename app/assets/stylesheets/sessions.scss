@@ -6,26 +6,28 @@ $lilac: #0079BF;
 $green: #5AAC44;
 $white: #FFF;
 $skyblue: skyblue;
+$red: red;
 
 .container, .form {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .container {
   height: 100%;
+  padding: 10px 0;
 }
 
 .form {
   width: 450px;
   min-height: 355px;
-  flex-direction: column;
   gap: 15px;
   background-color: #231d3a;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  padding: 50px 0;
+  padding: 40px 0;
 
   &__input-box {
     width: 224px;
@@ -38,12 +40,15 @@ $skyblue: skyblue;
     color: $white;
   }
 
+  &__input, &__select, &__button {
+    outline: none;
+  }
+
   &__input, &__select {
     width: 100%;
     border: 1px solid $lilac;
     border-radius: 3px;
     height: 32px;
-    outline: none;
   }
 
   &__input {
@@ -51,7 +56,7 @@ $skyblue: skyblue;
   }
 
   &__button {
-    width: 77px;
+    min-width: 77px;
     height: 32px;
     font-size: 14px;
     line-height: 20px;
@@ -60,6 +65,12 @@ $skyblue: skyblue;
     border: none;
     cursor: pointer;
     border-radius: 3px;
+    padding: 0 10px;
+    transition: ease 0.5;
+
+    &:hover {
+      background-color: #71c75a;
+    }
   }
 
   &__link {
@@ -67,4 +78,9 @@ $skyblue: skyblue;
     line-height: 20px;
     color: $skyblue;
   }
+}
+
+.error {
+  color: $red;
+  margin-bottom: 5px;
 }

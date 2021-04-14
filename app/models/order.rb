@@ -20,11 +20,12 @@ class Order < ApplicationRecord
   end
 
   def self.create_order(order)
-    if store_found(order.product_name, order.store).is_a?(Array)
+    store = store_found(order.product_name, order.store)
+    if store.is_a?(Array)
       OrderMailer.with(client: order.client).order_discarded_email.deliver_now
     else
       create(price: order.price, product_name: order.product_name, client: order.client,
-             store: store_found(order.product_name, order.store))
+             store: store)
     end
   end
 
@@ -57,6 +58,8 @@ class Order < ApplicationRecord
   end
 
   # custom validation
+
+  private
 
   def price_approved
     errors.add(:price, 'Price should be greater than 0') if price && price <= 0
