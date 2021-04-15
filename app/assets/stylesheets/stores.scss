@@ -1,3 +1,70 @@
 // Place all the styles related to the Stores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+$lucumaColor: #9c9322;
+$green: #5AAC44;
+
+.orders__container, .orders__list {
+  display: grid;
+}
+
+.orders__container {
+  grid-template-rows: repeat(3, auto);
+  gap: 10px;
+}
+
+.orders {
+  justify-content: flex-start;
+
+  &__store-name {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &__title, &__link {
+    justify-self: center;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__price {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__input {
+    padding-left: 5px;
+  }
+
+  &__list {
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid $lucumaColor;
+    border-left: 1px solid $lucumaColor;
+  }
+
+  &__item {
+    border-bottom: 1px solid $lucumaColor;
+    border-right: 1px solid $lucumaColor;
+    text-align: center;
+    padding: 10px;
+  }
+
+  &__link {
+    border: 1px solid $green;
+    color: $green;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  &--option {
+    font-weight: bold;
+    color: $lucumaColor;
+  }
+}

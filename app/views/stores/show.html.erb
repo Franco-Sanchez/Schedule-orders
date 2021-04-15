@@ -1,40 +1,45 @@
-<h2><%= @store.name %></h2>
-<h3>Orders</h3>
-<% @store.orders.each do |order| %>
-  <% if order.status != 'discarded' && order.price.nil? %>
-    <%= form_with model: order do |form| %>
-      <div>
-        <span><%= order.product_name %></span>
-        <% if order.status == 'pending' %>
-          <%= form.select :status, ['pending', 'approved'] %>
-        <% elsif order.status == 'approved' %>
-          <%= form.select :status, ['approved'] %>
+<section class="container orders">
+  <h2 class="orders__store-name"><%= @store.name %></h2>
+  <article class="orders__container">
+    <% @store.orders.each do |order| %>
+      <% if order.status != 'discarded' && order.price.nil? %>
+        <%= form_with model: order, class: 'orders__form' do |form| %>
+          <div>
+            <span><%= order.product_name %></span>
+            <% if order.status == 'pending' %>
+              <%= form.select :status, ['pending', 'approved'] %>
+            <% elsif order.status == 'approved' %>
+              <%= form.select :status, ['approved'] %>
+            <% end %>
+          </div>
+          <% if order.status == 'approved' %>
+            <div>
+              <span class="orders__price">Enter a price:</span>
+              <%= form.number_field :price, required: true, class: 'orders__input' %>
+            </div>
+            <%= form.submit 'Send quote', class: 'form__button' %>
+          <% elsif order.status == 'pending' %>
+            <%= form.submit 'Approve order', class: 'form__button' %>
+          <% end %>
         <% end %>
-      </div>
-      <% if order.status == 'approved' %>
-        <span>Enter a price:</span>
-        <div>
-          <%= form.number_field :price, required: true %>
-        </div>
-        <%= form.submit 'Send quote' %>
-      <% elsif order.status == 'pending' %>
-        <%= form.submit 'Approve order' %>
       <% end %>
     <% end %>
-  <% end %>
-  <ul>
-    <% if order.status == 'approved' && order.price %>
-      <li>
-        <span><%= order.product_name %></span> | 
-        <b><%= order.status %></b> | 
-        <span>S/<%= order.price %></span>
-      </li>
-    <% elsif order.status == 'discarded' %>
-      <li>
-        <span><%= order.product_name %></span> | 
-        <b><%= order.status %></b>
-      </li>
-    <% end %>
-  </ul>
-<% end %>  
-<%= link_to 'Logout', logout_path, method: :delete %>
+    <ul class="orders__list">
+      <li class="orders__item orders--option">Product name</li>
+      <li class="orders__item orders--option">Status</li>
+      <li class="orders__item orders--option">Price</li>
+      <% @store.orders.each do |order| %>
+        <% if order.status == 'approved' && order.price %>
+          <li class="orders__item"><%= order.product_name %></li>
+          <li class="orders__item"><%= order.status %></li>
+          <li class="orders__item">S/<%= order.price %></li>
+        <% elsif order.status == 'discarded' %>
+          <li class="orders__item"><%= order.product_name %></li> 
+          <li class="orders__item"><%= order.status %></li>
+          <li class="orders__item">-</li>
+        <% end %>
+      <% end %>
+    </ul>
+    <%= link_to 'Logout', logout_path, method: :delete, class: 'orders__link' %>
+  </article>
+</section>

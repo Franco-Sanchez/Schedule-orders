@@ -20,10 +20,10 @@ When you clone the repository, you must run the following commands:
 
 ## 🎯 Adittional
 
-If you want to view the project in the browser, you must run <b>rails s<b>. This looks like:
+If you want to view the project in the browser, you must run <i>rails s<i>. This looks like:
 
-<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="400">
+<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="900">
 
-## Final message
+## 📃 Final message
 
-Thanks for your time and for the oportunitty you gave me to improve my skills. I appreciate.
+Thanks for your time and for the oportunitty you gave me to improve my skills. I appreciate it.

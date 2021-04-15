@@ -3,10 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 $lilac: #0079BF;
-$green: #5AAC44;
 $white: #FFF;
 $skyblue: skyblue;
 $red: red;
+$lucumaColor: #9c9322;
 
 .container, .form {
   display: flex;
@@ -17,7 +17,7 @@ $red: red;
 
 .container {
   height: 100%;
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .form {
@@ -28,6 +28,10 @@ $red: red;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   padding: 40px 0;
+
+  @media screen and (max-width: 518px) {
+    width: 100%;
+  }
 
   &__input-box {
     width: 224px;
@@ -60,13 +64,13 @@ $red: red;
     height: 32px;
     font-size: 14px;
     line-height: 20px;
-    background-color: $green;
+    background-color: $lucumaColor;
     color: $white;
     border: none;
     cursor: pointer;
     border-radius: 3px;
     padding: 0 10px;
-    transition: ease 0.5;
+    transition: ease 0.5s;
 
     &:hover {
       background-color: #71c75a;
