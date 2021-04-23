@@ -1,6 +1,4 @@
-<img src="https://getduna.com/svg/duna-logo.svg" width="300">
-
-# Ruby on Rails Junior Challenge
+# Store
 
 ## 👩‍💻 About the project
 
@@ -22,8 +20,4 @@ When you clone the repository, you must run the following commands:
 
 If you want to view the project in the browser, you must run <b><i>rails s</i></b>. This looks like:
 
-<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1618438759/D-Una_pdicld.png" width="900">
-
-## 📃 Final message
-
-Thanks for your time and for the oportunitty you gave me to improve my skills. I appreciate it.
+<img src="" width="900">
