@@ -20,4 +20,4 @@ When you clone the repository, you must run the following commands:
 
 If you want to view the project in the browser, you must run <b><i>rails s</i></b>. This looks like:
 
-<img src="" width="900">
+<img src="https://res.cloudinary.com/dzy6tpyc7/image/upload/v1619242946/Store_uccmuq.png" width="900">
